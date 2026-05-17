@@ -25,7 +25,7 @@ export default function ContactInfo() {
     {
       icon: <Clock className="text-[#33c2df]" size={24} />,
       title: "Hours",
-      details: ["sat - wed: 8am - 8pm", "Sat - wed: 10am - 6pm"],
+      details: ["sat - Thu: 10am - 6pm", "Sat - Thu: 10am - 6pm"],
       label: "Working hours"
     }
   ];
