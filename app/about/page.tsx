@@ -1,6 +1,7 @@
 import AboutHero from "@/components/about/AboutHero";
 import Mission from "@/components/about/Mission";
 import Values from "@/components/about/Values";
+import Vission from "@/components/about/Vission";
 
 export const metadata = {
   title: "About Us | Bellevie",
@@ -12,6 +13,7 @@ export default function AboutPage() {
     <div className="flex flex-col">
       <AboutHero />
       <Mission />
+      <Vission />
       <Values />
     </div>
   );

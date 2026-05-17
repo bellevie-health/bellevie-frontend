@@ -8,13 +8,16 @@ export default function Mission() {
               Our Mission
             </h2>
             <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-              At Bellevie, our mission is to empower businesses with cutting-edge technology 
-              and design. We believe that every digital interaction should be meaningful, 
-              efficient, and beautiful.
+             Our mission is to bridge the gap between people and quality healthcare by creating affordable, accessible, and reliable medical support services for all. 
             </p>
             <p className="mt-4 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-              We strive to push the boundaries of what&apos;s possible on the web, delivering 
-              solutions that not only meet our clients&apos; needs but exceed their expectations.
+              BelleVie strives to empower individuals and families through innovative healthcare solutions, strategic hospital partnerships, digital health services, and financial healthcare coverage opportunities.
+            </p>
+            <p className="mt-4 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+              We are committed to ensuring that even low and middle-income communities can access advanced medical treatment, expert consultations, and international healthcare facilities without unnecessary complexity or financial burden. 
+            </p>
+            <p className="mt-4 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+              Through compassion, technology, and global collaboration, BelleVie aims to transform healthcare support into a more humane, transparent, and patient-centered experience.
             </p>
           </div>
           <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl h-96 flex items-center justify-center border border-zinc-200 dark:border-zinc-800">
