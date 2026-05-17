@@ -52,7 +52,7 @@ export default function Footer() {
             <ul className="space-y-4">
               {["Cardiology", "Neurology", "Pediatrics", "Orthopedics", "Ophthalmology"].map((item) => (
                 <li key={item}>
-                  <Link href="#" className="text-base text-zinc-500 dark:text-zinc-400 font-medium hover:text-[#33c2df] transition-colors">
+                  <Link href="https://belleviebd.netlify.app/services/1" className="text-base text-zinc-500 dark:text-zinc-400 font-medium hover:text-[#33c2df] transition-colors">
                     {item}
                   </Link>
                 </li>
