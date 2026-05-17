@@ -1,0 +1,830 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#1565C0;--blue-light:#E3F0FF;--blue-mid:#3D8EE8;
+  --teal:#00897B;--teal-light:#E0F5F3;
+  --green:#43A047;--green-light:#E8F5E9;
+  --amber:#F57C00;--amber-light:#FFF3E0;
+  --gray0:#F8FAFC;--gray1:#F1F5F9;--gray2:#E2E8F0;
+  --gray3:#CBD5E1;--gray4:#94A3B8;--gray5:#64748B;
+  --gray7:#334155;--gray9:#0F172A;
+  --white:#FFFFFF;
+  --radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:20px;
+  --ff:'Sora',sans-serif;--ff2:'Plus Jakarta Sans',sans-serif;
+}
+body{background:var(--gray1);display:flex;justify-content:center;align-items:flex-start;padding:16px 0;font-family:var(--ff2);min-height:100vh}
+.phone{width:375px;background:var(--gray0);border-radius:36px;overflow:hidden;border:2px solid var(--gray2);position:relative}
+.screen{height:780px;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;background:var(--gray0)}
+.screen::-webkit-scrollbar{display:none}
+
+/* NAV */
+.nav{background:var(--white);padding:14px 18px 12px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:0.5px solid var(--gray2)}
+.nav-logo{display:flex;align-items:center;gap:6px}
+.logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--blue),var(--teal));border-radius:10px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:18px;height:18px}
+.logo-text{font-family:var(--ff);font-size:14px;font-weight:700;color:var(--blue);letter-spacing:-0.3px}
+.logo-text span{color:var(--teal)}
+.nav-loc{display:flex;align-items:center;gap:4px;background:var(--gray1);border-radius:20px;padding:5px 10px;cursor:pointer}
+.nav-loc svg{width:12px;height:12px;color:var(--blue)}
+.nav-loc-text{font-size:11px;font-weight:500;color:var(--gray7);font-family:var(--ff2)}
+.nav-loc-arrow{font-size:9px;color:var(--gray4);margin-left:2px}
+.nav-icons{display:flex;align-items:center;gap:2px}
+.nav-icon-btn{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;border:none;background:transparent}
+.nav-icon-btn:hover{background:var(--gray1)}
+.nav-icon-btn svg{width:18px;height:18px;color:var(--gray7)}
+.notif-dot{width:7px;height:7px;background:#EF4444;border-radius:50%;position:absolute;top:5px;right:5px;border:1.5px solid var(--white)}
+
+/* HERO SLIDER */
+.hero{padding:14px 16px 0;overflow:hidden}
+.hero-track{display:flex;transition:transform 0.45s cubic-bezier(.4,0,.2,1);will-change:transform}
+.hero-slide{min-width:343px;border-radius:var(--radius-xl);overflow:hidden;position:relative;height:168px}
+.slide-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.slide-1{background:linear-gradient(130deg,#0D47A1 0%,#1565C0 45%,#0288D1 100%)}
+.slide-2{background:linear-gradient(130deg,#00695C 0%,#00897B 45%,#26A69A 100%)}
+.slide-3{background:linear-gradient(130deg,#4527A0 0%,#512DA8 45%,#7B1FA2 100%)}
+.slide-deco{position:absolute;right:-20px;bottom:-20px;width:160px;height:160px;border-radius:50%;opacity:0.15;background:white}
+.slide-deco2{position:absolute;right:30px;top:-30px;width:90px;height:90px;border-radius:50%;opacity:0.1;background:white}
+.slide-content{position:relative;z-index:2;padding:20px 20px}
+.slide-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,0.2);border:0.5px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;margin-bottom:8px}
+.slide-badge span{font-size:10px;font-weight:600;color:white;font-family:var(--ff);letter-spacing:0.5px;text-transform:uppercase}
+.slide-content h2{font-family:var(--ff);font-size:17px;font-weight:700;color:white;line-height:1.25;margin-bottom:12px;max-width:190px}
+.slide-btns{display:flex;gap:8px}
+.btn-white{background:white;color:var(--blue);font-size:11px;font-weight:600;font-family:var(--ff);padding:7px 14px;border-radius:20px;border:none;cursor:pointer}
+.btn-outline{background:rgba(255,255,255,0.15);color:white;font-size:11px;font-weight:600;font-family:var(--ff);padding:7px 14px;border-radius:20px;border:0.5px solid rgba(255,255,255,0.4);cursor:pointer}
+.slide-2 .btn-white{color:var(--teal)}
+.slide-3 .btn-white{color:#512DA8}
+.hero-illus{position:absolute;right:12px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:6px}
+.hero-illus-circle{width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center}
+.hero-illus-circle svg{width:38px;height:38px}
+.hero-dots{display:flex;gap:5px;justify-content:center;margin-top:10px;padding-bottom:2px}
+.hero-dot{width:6px;height:6px;border-radius:3px;background:var(--gray3);transition:all 0.3s;cursor:pointer}
+.hero-dot.active{width:18px;background:var(--blue)}
+
+/* SECTION HEADER */
+.sec-head{display:flex;align-items:center;justify-content:space-between;padding:18px 16px 10px}
+.sec-title{font-family:var(--ff);font-size:15px;font-weight:700;color:var(--gray9)}
+.sec-link{font-size:12px;font-weight:600;color:var(--blue);font-family:var(--ff2);display:flex;align-items:center;gap:2px;cursor:pointer}
+
+/* CATEGORIES */
+.cats{padding:0 16px 4px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.cat{background:var(--white);border-radius:var(--radius-md);padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;border:0.5px solid var(--gray2);transition:transform 0.15s}
+.cat:hover{transform:scale(0.97)}
+.cat-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.cat-icon svg{width:20px;height:20px}
+.cat-icon.c1{background:var(--blue-light)}
+.cat-icon.c2{background:#E8EAF6}
+.cat-icon.c3{background:var(--teal-light)}
+.cat-icon.c4{background:var(--green-light)}
+.cat-icon.c5{background:var(--amber-light)}
+.cat-label{font-size:9.5px;font-weight:600;color:var(--gray7);text-align:center;font-family:var(--ff);line-height:1.2}
+
+/* DOCTOR CARDS */
+.hscroll{display:flex;gap:10px;padding:0 16px 4px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.hscroll::-webkit-scrollbar{display:none}
+.doc-card{min-width:148px;background:var(--white);border-radius:var(--radius-lg);padding:12px;border:0.5px solid var(--gray2);flex-shrink:0;cursor:pointer}
+.doc-avatar{width:56px;height:56px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-family:var(--ff);font-size:18px;font-weight:700;color:white;position:relative}
+.av1{background:linear-gradient(135deg,#1565C0,#42A5F5)}
+.av2{background:linear-gradient(135deg,#00695C,#26C6DA)}
+.av3{background:linear-gradient(135deg,#6A1B9A,#AB47BC)}
+.av4{background:linear-gradient(135deg,#E65100,#FF8A65)}
+.verified-badge{width:16px;height:16px;background:#22C55E;border-radius:50%;border:2px solid white;position:absolute;bottom:1px;right:1px;display:flex;align-items:center;justify-content:center}
+.verified-badge svg{width:8px;height:8px}
+.doc-name{font-family:var(--ff);font-size:12px;font-weight:700;color:var(--gray9);text-align:center;margin-bottom:2px}
+.doc-spec{font-size:10.5px;color:var(--blue);font-weight:600;text-align:center;margin-bottom:4px;font-family:var(--ff2)}
+.doc-meta{display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:8px}
+.stars{display:flex;gap:1px}
+.star{width:9px;height:9px;fill:#FBBF24}
+.doc-exp{font-size:10px;color:var(--gray5);font-family:var(--ff2)}
+.btn-book{width:100%;background:var(--blue);color:white;font-size:10px;font-weight:600;font-family:var(--ff);padding:6px 0;border-radius:20px;border:none;cursor:pointer}
+
+/* HOSPITAL CARDS */
+.hosp-card{min-width:220px;background:var(--white);border-radius:var(--radius-lg);overflow:hidden;border:0.5px solid var(--gray2);flex-shrink:0;cursor:pointer}
+.hosp-img{height:96px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hi1{background:linear-gradient(135deg,#E3F0FF,#B3D9FF)}
+.hi2{background:linear-gradient(135deg,#E0F5F3,#A7EDE6)}
+.hi3{background:linear-gradient(135deg,#F3E5F5,#E1BEE7)}
+.hosp-img-icon{position:absolute;bottom:8px;left:10px;background:white;border-radius:8px;padding:5px 8px;display:flex;align-items:center;gap:4px}
+.hosp-img-icon svg{width:14px;height:14px}
+.hosp-rating-badge{position:absolute;top:8px;right:8px;background:var(--amber);border-radius:6px;padding:3px 7px;display:flex;align-items:center;gap:3px}
+.hosp-rating-badge svg{width:9px;height:9px;fill:white}
+.hosp-rating-badge span{font-size:10px;font-weight:700;color:white;font-family:var(--ff)}
+.hosp-body{padding:10px 12px}
+.hosp-name{font-family:var(--ff);font-size:13px;font-weight:700;color:var(--gray9);margin-bottom:3px}
+.hosp-loc{display:flex;align-items:center;gap:3px;margin-bottom:8px}
+.hosp-loc svg{width:11px;height:11px;color:var(--gray4)}
+.hosp-loc span{font-size:10.5px;color:var(--gray5);font-family:var(--ff2)}
+.hosp-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.hosp-tag{background:var(--blue-light);color:var(--blue);font-size:9.5px;font-weight:600;font-family:var(--ff);padding:3px 7px;border-radius:10px}
+.btn-view{width:100%;background:transparent;color:var(--blue);font-size:11px;font-weight:600;font-family:var(--ff);padding:7px 0;border-radius:20px;border:1px solid var(--blue);cursor:pointer}
+
+/* FOREIGN TREATMENT */
+.foreign-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:0 16px}
+.foreign-card{background:var(--white);border-radius:var(--radius-lg);border:0.5px solid var(--gray2);overflow:hidden;cursor:pointer}
+.fc-header{padding:12px 12px 8px;display:flex;align-items:center;gap:8px}
+.fc-flag{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--gray1)}
+.fc-country{font-family:var(--ff);font-size:12px;font-weight:700;color:var(--gray9)}
+.fc-popular{font-size:9px;color:var(--teal);font-weight:600;font-family:var(--ff2)}
+.fc-treatments{padding:0 12px;display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.fc-treat{background:var(--teal-light);color:var(--teal);font-size:9px;font-weight:600;font-family:var(--ff);padding:3px 7px;border-radius:8px}
+.fc-btns{display:flex;gap:6px;padding:0 12px 12px}
+.btn-consult{flex:1;background:var(--teal);color:white;font-size:10px;font-weight:600;font-family:var(--ff);padding:6px 0;border-radius:16px;border:none;cursor:pointer}
+.btn-estimate{flex:1;background:transparent;color:var(--teal);font-size:10px;font-weight:600;font-family:var(--ff);padding:6px 0;border-radius:16px;border:1px solid var(--teal);cursor:pointer}
+
+/* SERVICES */
+.services-grid{display:flex;gap:10px;padding:0 16px;overflow-x:auto;scrollbar-width:none}
+.services-grid::-webkit-scrollbar{display:none}
+.svc-card{min-width:76px;background:var(--white);border-radius:var(--radius-md);border:0.5px solid var(--gray2);padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;flex-shrink:0}
+.svc-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.svc-icon svg{width:22px;height:22px}
+.si1{background:#E3F0FF}
+.si2{background:var(--teal-light)}
+.si3{background:var(--green-light)}
+.si4{background:var(--amber-light)}
+.si5{background:#F3E5F5}
+.si6{background:#FCE4EC}
+.svc-label{font-size:10px;font-weight:600;color:var(--gray7);font-family:var(--ff);text-align:center;line-height:1.2}
+
+/* PRODUCTS */
+.products-scroll{display:flex;gap:10px;padding:0 16px 4px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.products-scroll::-webkit-scrollbar{display:none}
+.prod-card{min-width:130px;background:var(--white);border-radius:var(--radius-lg);border:0.5px solid var(--gray2);overflow:hidden;flex-shrink:0;cursor:pointer}
+.prod-img{height:90px;display:flex;align-items:center;justify-content:center}
+.pi1{background:linear-gradient(135deg,#E3F0FF,#C5DCF8)}
+.pi2{background:linear-gradient(135deg,#E8F5E9,#C8E6C9)}
+.pi3{background:linear-gradient(135deg,#FFF3E0,#FFCCBC)}
+.pi4{background:linear-gradient(135deg,#F3E5F5,#E1BEE7)}
+.prod-img svg{width:44px;height:44px}
+.prod-body{padding:8px 10px 10px}
+.prod-name{font-family:var(--ff);font-size:11px;font-weight:700;color:var(--gray9);margin-bottom:3px;line-height:1.2}
+.prod-price{font-family:var(--ff);font-size:13px;font-weight:700;color:var(--blue);margin-bottom:7px}
+.btn-cart{width:100%;background:var(--blue);color:white;font-size:10px;font-weight:600;font-family:var(--ff);padding:6px 0;border-radius:16px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px}
+.btn-cart svg{width:11px;height:11px}
+
+/* QUICK ACCESS STRIP */
+.quick-strip{display:flex;align-items:center;gap:0;margin:0 16px;background:linear-gradient(90deg,var(--blue) 0%,var(--teal) 100%);border-radius:var(--radius-lg);overflow:hidden}
+.qs-item{flex:1;padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;position:relative}
+.qs-item:not(:last-child)::after{content:'';position:absolute;right:0;top:15%;height:70%;width:0.5px;background:rgba(255,255,255,0.25)}
+.qs-item svg{width:22px;height:22px;color:white}
+.qs-label{font-size:9.5px;font-weight:600;color:rgba(255,255,255,0.9);font-family:var(--ff);text-align:center;line-height:1.2}
+
+/* BOTTOM NAV */
+.bottom-nav{background:var(--white);border-top:0.5px solid var(--gray2);display:flex;align-items:center;padding:8px 0 4px;position:sticky;bottom:0}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 0}
+.bn-item svg{width:20px;height:20px;color:var(--gray4)}
+.bn-item.active svg{color:var(--blue)}
+.bn-label{font-size:9.5px;font-weight:600;color:var(--gray4);font-family:var(--ff)}
+.bn-item.active .bn-label{color:var(--blue)}
+.bn-center{background:var(--blue);width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:-20px;border:3px solid var(--gray0);cursor:pointer;box-shadow:0 4px 12px rgba(21,101,192,0.35)}
+.bn-center svg{width:22px;height:22px;color:white}
+
+.section-pad{padding-bottom:8px}
+</style>
+
+<h2 class="sr-only">MediGlobal – Medical Broker Platform mobile app home page mockup</h2>
+<div style="display:flex;justify-content:center;padding:8px 0">
+<div class="phone">
+<div class="screen">
+
+<!-- TOP NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="10" r="8" stroke="white" stroke-width="1.5"/>
+        <path d="M10 6v8M7 10h6" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M4 10a6 6 0 0 1 12 0" stroke="white" stroke-width="1" stroke-dasharray="2 1.5" opacity="0.7"/>
+      </svg>
+    </div>
+    <span class="logo-text">Medi<span>Globe</span></span>
+  </div>
+  <div class="nav-loc">
+    <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 1a3.5 3.5 0 0 1 3.5 3.5C9.5 7 6 11 6 11S2.5 7 2.5 4.5A3.5 3.5 0 0 1 6 1zm0 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+    <span class="nav-loc-text">Dhaka, BD</span>
+    <span class="nav-loc-arrow">▾</span>
+  </div>
+  <div class="nav-icons">
+    <button class="nav-icon-btn">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M15 15l-2.5-2.5" stroke-linecap="round"/></svg>
+    </button>
+    <button class="nav-icon-btn">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8a6 6 0 1 1 12 0c0 4 2 5 2 5H2s2-1 2-5zM8.5 17a1.5 1.5 0 0 0 3 0" stroke-linecap="round"/></svg>
+      <span class="notif-dot"></span>
+    </button>
+    <button class="nav-icon-btn">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10" cy="7" r="3"/><path d="M4 17a6 6 0 0 1 12 0" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<div class="hero">
+  <div class="hero-track" id="heroTrack">
+
+    <div class="hero-slide">
+      <div class="slide-bg slide-1">
+        <div class="slide-deco"></div><div class="slide-deco2"></div>
+      </div>
+      <div class="slide-content">
+        <div class="slide-badge"><span>Global Care</span></div>
+        <h2>Top International Hospital Treatment</h2>
+        <div class="slide-btns">
+          <button class="btn-white">Book Now</button>
+          <button class="btn-outline">Explore</button>
+        </div>
+      </div>
+      <div class="hero-illus">
+        <div class="hero-illus-circle">
+          <svg viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="16" stroke="white" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.5"/>
+            <path d="M14 20a6 6 0 1 1 12 0 6 6 0 0 1-12 0z" fill="white" opacity="0.9"/>
+            <path d="M20 17v6M17 20h6" stroke="rgba(21,101,192,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide" style="margin-left:10px">
+      <div class="slide-bg slide-2">
+        <div class="slide-deco"></div><div class="slide-deco2"></div>
+      </div>
+      <div class="slide-content">
+        <div class="slide-badge"><span>Near You</span></div>
+        <h2>Find the Best Doctors Near You</h2>
+        <div class="slide-btns">
+          <button class="btn-white">Find Doctor</button>
+          <button class="btn-outline">Explore</button>
+        </div>
+      </div>
+      <div class="hero-illus">
+        <div class="hero-illus-circle">
+          <svg viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="14" r="6" fill="white" opacity="0.9"/>
+            <path d="M8 34a12 12 0 0 1 24 0" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.9"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide" style="margin-left:10px">
+      <div class="slide-bg slide-3">
+        <div class="slide-deco"></div><div class="slide-deco2"></div>
+      </div>
+      <div class="slide-content">
+        <div class="slide-badge"><span>Full Journey</span></div>
+        <h2>We Manage Your Complete Medical Journey</h2>
+        <div class="slide-btns">
+          <button class="btn-white">Get Started</button>
+          <button class="btn-outline">Learn More</button>
+        </div>
+      </div>
+      <div class="hero-illus">
+        <div class="hero-illus-circle">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M8 20a12 12 0 1 1 24 0" stroke="white" stroke-width="1.5" opacity="0.6"/>
+            <path d="M12 26l4-4 4 4 8-10" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="hero-dots" id="heroDots">
+    <div class="hero-dot active" onclick="goSlide(0)"></div>
+    <div class="hero-dot" onclick="goSlide(1)"></div>
+    <div class="hero-dot" onclick="goSlide(2)"></div>
+  </div>
+</div>
+
+<!-- QUICK ACCESS STRIP -->
+<div style="padding:14px 16px 6px">
+  <div class="quick-strip">
+    <div class="qs-item">
+      <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 2C6 2 2 6 2 11s4 9 9 9 9-4 9-9-4-9-9-9z"/><path d="M11 7v4l3 2" stroke-linecap="round"/></svg>
+      <span class="qs-label">Appoint&shy;ment</span>
+    </div>
+    <div class="qs-item">
+      <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="16" height="13" rx="2"/><path d="M3 9h16M8 5V3M14 5V3" stroke-linecap="round"/></svg>
+      <span class="qs-label">Medical Records</span>
+    </div>
+    <div class="qs-item">
+      <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h14l1 10H3L4 4z"/><circle cx="8" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></svg>
+      <span class="qs-label">My Orders</span>
+    </div>
+    <div class="qs-item">
+      <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v12l-4-2-3 2-3-2-4 2z" stroke-linejoin="round"/></svg>
+      <span class="qs-label">My History</span>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div>
+  <div class="sec-head">
+    <span class="sec-title">Categories</span>
+    <span class="sec-link">All ›</span>
+  </div>
+  <div class="cats">
+    <div class="cat">
+      <div class="cat-icon c1">
+        <svg viewBox="0 0 22 22" fill="none" stroke="#1565C0" stroke-width="1.7"><rect x="3" y="6" width="16" height="13" rx="2"/><path d="M7 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/><path d="M11 10v5M9 12h4" stroke-linecap="round"/></svg>
+      </div>
+      <span class="cat-label">Hospi&shy;tals</span>
+    </div>
+    <div class="cat">
+      <div class="cat-icon c2">
+        <svg viewBox="0 0 22 22" fill="none" stroke="#3949AB" stroke-width="1.7"><circle cx="11" cy="8" r="4"/><path d="M4 18a7 7 0 0 1 14 0" stroke-linecap="round"/></svg>
+      </div>
+      <span class="cat-label">Doc&shy;tors</span>
+    </div>
+    <div class="cat">
+      <div class="cat-icon c3">
+        <svg viewBox="0 0 22 22" fill="none" stroke="#00897B" stroke-width="1.7"><circle cx="11" cy="11" r="8"/><path d="M4 11a7 7 0 0 1 14 0" stroke-linecap="round"/><path d="M8 5.5c-.5 1-.5 2-.5 5.5s0 4.5.5 5.5M14 5.5c.5 1 .5 2 .5 5.5s0 4.5-.5 5.5"/><path d="M3 11h16"/></svg>
+      </div>
+      <span class="cat-label">Foreign Treat</span>
+    </div>
+    <div class="cat">
+      <div class="cat-icon c4">
+        <svg viewBox="0 0 22 22" fill="none" stroke="#388E3C" stroke-width="1.7"><path d="M7 3h8l2 4H5L7 3z"/><rect x="4" y="7" width="14" height="12" rx="1.5"/><path d="M9 13l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="cat-label">Med Services</span>
+    </div>
+    <div class="cat">
+      <div class="cat-icon c5">
+        <svg viewBox="0 0 22 22" fill="none" stroke="#E65100" stroke-width="1.7"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="5" rx="1.5"/><rect x="13" y="4" width="5" height="7" rx="1.5"/><rect x="13" y="13" width="5" height="5" rx="1.5"/></svg>
+      </div>
+      <span class="cat-label">Accessories</span>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED DOCTORS -->
+<div class="section-pad">
+  <div class="sec-head">
+    <span class="sec-title">Top Doctors</span>
+    <span class="sec-link">See all ›</span>
+  </div>
+  <div class="hscroll">
+
+    <div class="doc-card">
+      <div class="doc-avatar av1">
+        <span>RK</span>
+        <div class="verified-badge"><svg viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="doc-name">Dr. Rashid Khan</div>
+      <div class="doc-spec">Cardiologist</div>
+      <div class="doc-meta">
+        <div class="stars">
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+        </div>
+        <span class="doc-exp">12 yrs</span>
+      </div>
+      <button class="btn-book">Book Appointment</button>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-avatar av2">
+        <span>SN</span>
+        <div class="verified-badge"><svg viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="doc-name">Dr. Sara Naser</div>
+      <div class="doc-spec">Oncologist</div>
+      <div class="doc-meta">
+        <div class="stars">
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10" style="fill:#E2E8F0"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+        </div>
+        <span class="doc-exp">9 yrs</span>
+      </div>
+      <button class="btn-book">Book Appointment</button>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-avatar av3">
+        <span>MH</span>
+        <div class="verified-badge"><svg viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="doc-name">Dr. M. Hossain</div>
+      <div class="doc-spec">Neurologist</div>
+      <div class="doc-meta">
+        <div class="stars">
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+        </div>
+        <span class="doc-exp">15 yrs</span>
+      </div>
+      <button class="btn-book">Book Appointment</button>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-avatar av4">
+        <span>FA</span>
+        <div class="verified-badge"><svg viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="doc-name">Dr. F. Ahmed</div>
+      <div class="doc-spec">Orthopedic</div>
+      <div class="doc-meta">
+        <div class="stars">
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <svg class="star" viewBox="0 0 10 10" style="fill:#E2E8F0"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+        </div>
+        <span class="doc-exp">8 yrs</span>
+      </div>
+      <button class="btn-book">Book Appointment</button>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED HOSPITALS -->
+<div class="section-pad">
+  <div class="sec-head">
+    <span class="sec-title">Top Hospitals</span>
+    <span class="sec-link">See all ›</span>
+  </div>
+  <div class="hscroll">
+
+    <div class="hosp-card">
+      <div class="hosp-img hi1">
+        <svg viewBox="0 0 80 60" fill="none" style="width:80px;opacity:0.5">
+          <rect x="20" y="15" width="40" height="35" rx="2" fill="#1565C0"/>
+          <rect x="33" y="6" width="14" height="10" rx="1" fill="#1565C0"/>
+          <rect x="27" y="25" width="10" height="10" fill="white" opacity="0.5"/>
+          <rect x="43" y="25" width="10" height="10" fill="white" opacity="0.5"/>
+          <rect x="35" y="33" width="10" height="17" fill="white" opacity="0.6"/>
+          <path d="M35 18h10M40 13v10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div class="hosp-img-icon">
+          <svg viewBox="0 0 14 14" fill="none" stroke="#1565C0" stroke-width="1.5"><circle cx="7" cy="5" r="2.5"/><path d="M2 12a5 5 0 0 1 10 0" stroke-linecap="round"/></svg>
+          <span style="font-size:10px;font-weight:600;color:var(--blue);font-family:var(--ff)">Dhaka</span>
+        </div>
+        <div class="hosp-rating-badge">
+          <svg viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <span>4.8</span>
+        </div>
+      </div>
+      <div class="hosp-body">
+        <div class="hosp-name">Square Hospital</div>
+        <div class="hosp-loc">
+          <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 1a3.5 3.5 0 0 1 3.5 3.5C9.5 7 6 11 6 11S2.5 7 2.5 4.5A3.5 3.5 0 0 1 6 1zm0 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+          <span>Panthapath, Dhaka</span>
+        </div>
+        <div class="hosp-tags">
+          <span class="hosp-tag">Cardiac</span>
+          <span class="hosp-tag">Neurology</span>
+          <span class="hosp-tag">Oncology</span>
+        </div>
+        <button class="btn-view">View Details</button>
+      </div>
+    </div>
+
+    <div class="hosp-card">
+      <div class="hosp-img hi2">
+        <svg viewBox="0 0 80 60" fill="none" style="width:80px;opacity:0.45">
+          <rect x="15" y="15" width="50" height="35" rx="2" fill="#00695C"/>
+          <rect x="33" y="6" width="14" height="10" rx="1" fill="#00695C"/>
+          <rect x="22" y="25" width="10" height="10" fill="white" opacity="0.5"/>
+          <rect x="36" y="25" width="10" height="10" fill="white" opacity="0.5"/>
+          <rect x="50" y="25" width="10" height="10" fill="white" opacity="0.5"/>
+          <rect x="33" y="33" width="14" height="17" fill="white" opacity="0.6"/>
+          <path d="M33 18h14M40 11v14" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div class="hosp-img-icon">
+          <svg viewBox="0 0 14 14" fill="none" stroke="#00695C" stroke-width="1.5"><circle cx="7" cy="5" r="2.5"/><path d="M2 12a5 5 0 0 1 10 0" stroke-linecap="round"/></svg>
+          <span style="font-size:10px;font-weight:600;color:var(--teal);font-family:var(--ff)">Dhaka</span>
+        </div>
+        <div class="hosp-rating-badge">
+          <svg viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <span>4.7</span>
+        </div>
+      </div>
+      <div class="hosp-body">
+        <div class="hosp-name">United Hospital</div>
+        <div class="hosp-loc">
+          <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 1a3.5 3.5 0 0 1 3.5 3.5C9.5 7 6 11 6 11S2.5 7 2.5 4.5A3.5 3.5 0 0 1 6 1zm0 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+          <span>Gulshan, Dhaka</span>
+        </div>
+        <div class="hosp-tags">
+          <span class="hosp-tag">Orthopedics</span>
+          <span class="hosp-tag">Pediatric</span>
+        </div>
+        <button class="btn-view">View Details</button>
+      </div>
+    </div>
+
+    <div class="hosp-card">
+      <div class="hosp-img hi3">
+        <svg viewBox="0 0 80 60" fill="none" style="width:80px;opacity:0.45">
+          <rect x="20" y="12" width="40" height="38" rx="2" fill="#6A1B9A"/>
+          <rect x="33" y="4" width="14" height="10" rx="1" fill="#6A1B9A"/>
+          <rect x="26" y="24" width="10" height="10" fill="white" opacity="0.5"/>
+          <rect x="44" y="24" width="10" height="10" fill="white" opacity="0.5"/>
+          <rect x="35" y="34" width="10" height="16" fill="white" opacity="0.6"/>
+          <path d="M33 17h14M40 11v12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div class="hosp-img-icon">
+          <svg viewBox="0 0 14 14" fill="none" stroke="#6A1B9A" stroke-width="1.5"><circle cx="7" cy="5" r="2.5"/><path d="M2 12a5 5 0 0 1 10 0" stroke-linecap="round"/></svg>
+          <span style="font-size:10px;font-weight:600;color:#6A1B9A;font-family:var(--ff)">Chtt.</span>
+        </div>
+        <div class="hosp-rating-badge">
+          <svg viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4 7 6l.4 3L5 7.5 2.6 9 3 6 1 4l2.8-.5L5 1z"/></svg>
+          <span>4.9</span>
+        </div>
+      </div>
+      <div class="hosp-body">
+        <div class="hosp-name">Chittagong Med. College</div>
+        <div class="hosp-loc">
+          <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 1a3.5 3.5 0 0 1 3.5 3.5C9.5 7 6 11 6 11S2.5 7 2.5 4.5A3.5 3.5 0 0 1 6 1zm0 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+          <span>Chittagong</span>
+        </div>
+        <div class="hosp-tags">
+          <span class="hosp-tag">General</span>
+          <span class="hosp-tag">Surgery</span>
+        </div>
+        <button class="btn-view">View Details</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOREIGN TREATMENTS -->
+<div class="section-pad">
+  <div class="sec-head">
+    <span class="sec-title">Foreign Treatments</span>
+    <span class="sec-link">See all ›</span>
+  </div>
+  <div class="foreign-grid">
+    <div class="foreign-card">
+      <div class="fc-header">
+        <div class="fc-flag">🇮🇳</div>
+        <div>
+          <div class="fc-country">India</div>
+          <div class="fc-popular">Most popular</div>
+        </div>
+      </div>
+      <div class="fc-treatments">
+        <span class="fc-treat">Cardiac</span>
+        <span class="fc-treat">Cancer</span>
+        <span class="fc-treat">Spine</span>
+      </div>
+      <div class="fc-btns">
+        <button class="btn-consult">Consult</button>
+        <button class="btn-estimate">Estimate</button>
+      </div>
+    </div>
+    <div class="foreign-card">
+      <div class="fc-header">
+        <div class="fc-flag">🇹🇭</div>
+        <div>
+          <div class="fc-country">Thailand</div>
+          <div class="fc-popular">Affordable</div>
+        </div>
+      </div>
+      <div class="fc-treatments">
+        <span class="fc-treat">Cosmetic</span>
+        <span class="fc-treat">IVF</span>
+        <span class="fc-treat">Dental</span>
+      </div>
+      <div class="fc-btns">
+        <button class="btn-consult">Consult</button>
+        <button class="btn-estimate">Estimate</button>
+      </div>
+    </div>
+    <div class="foreign-card">
+      <div class="fc-header">
+        <div class="fc-flag">🇹🇷</div>
+        <div>
+          <div class="fc-country">Turkey</div>
+          <div class="fc-popular">High-tech</div>
+        </div>
+      </div>
+      <div class="fc-treatments">
+        <span class="fc-treat">Hair</span>
+        <span class="fc-treat">Eye</span>
+        <span class="fc-treat">Ortho</span>
+      </div>
+      <div class="fc-btns">
+        <button class="btn-consult">Consult</button>
+        <button class="btn-estimate">Estimate</button>
+      </div>
+    </div>
+    <div class="foreign-card">
+      <div class="fc-header">
+        <div class="fc-flag">🇸🇬</div>
+        <div>
+          <div class="fc-country">Singapore</div>
+          <div class="fc-popular">Premium</div>
+        </div>
+      </div>
+      <div class="fc-treatments">
+        <span class="fc-treat">Neuro</span>
+        <span class="fc-treat">Cancer</span>
+        <span class="fc-treat">Cardiac</span>
+      </div>
+      <div class="fc-btns">
+        <button class="btn-consult">Consult</button>
+        <button class="btn-estimate">Estimate</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MEDICAL SERVICES -->
+<div class="section-pad">
+  <div class="sec-head">
+    <span class="sec-title">Medical Services</span>
+    <span class="sec-link">See all ›</span>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon si1">
+        <svg viewBox="0 0 22 22" fill="none" stroke="#1565C0" stroke-width="1.7"><rect x="3" y="4" width="16" height="14" rx="2"/><path d="M3 8h16M8 4V2M14 4V2" stroke-linecap="round"/></svg>
+      </div>
+      <span class="svc-label">Lab Tests</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon si2">
+        <svg viewBox="0 0 22 22" fill="none" stroke="#00897B" stroke-width="1.7"><circle cx="11" cy="8" r="4"/><path d="M5 19a6 6 0 0 1 12 0" stroke-linecap="round"/><path d="M15 11l2 2-2 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="svc-label">Home Nursing</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon si3">
+        <svg viewBox="0 0 22 22" fill="none" stroke="#388E3C" stroke-width="1.7"><rect x="2" y="7" width="18" height="10" rx="3"/><path d="M5 7V5a1 1 0 0 1 1-1h3M13 4h3a1 1 0 0 1 1 1v2M12 14h6M2 12h4" stroke-linecap="round"/><path d="M6 12a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/></svg>
+      </div>
+      <span class="svc-label">Ambulance</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon si4">
+        <svg viewBox="0 0 22 22" fill="none" stroke="#E65100" stroke-width="1.7"><rect x="3" y="3" width="16" height="14" rx="2"/><path d="M3 17l4-4 4 4 4-4 4 4M7 10h.01M11 10h.01M15 10h.01" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="svc-label">Telemedicine</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon si5">
+        <svg viewBox="0 0 22 22" fill="none" stroke="#6A1B9A" stroke-width="1.7"><path d="M9 3h4l1 4H8L9 3z"/><rect x="5" y="7" width="12" height="12" rx="1.5"/><path d="M9 13l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="svc-label">Diagnostics</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon si6">
+        <svg viewBox="0 0 22 22" fill="none" stroke="#C62828" stroke-width="1.7"><path d="M11 3C8 3 5 5.5 5 9c0 5 6 10 6 10s6-5 6-10c0-3.5-3-6-6-6z"/><path d="M9 9h4M11 7v4" stroke-linecap="round"/></svg>
+      </div>
+      <span class="svc-label">Emergency</span>
+    </div>
+  </div>
+</div>
+
+<!-- MEDICAL ACCESSORIES -->
+<div class="section-pad">
+  <div class="sec-head">
+    <span class="sec-title">Medical Accessories</span>
+    <span class="sec-link">Shop all ›</span>
+  </div>
+  <div class="products-scroll">
+
+    <div class="prod-card">
+      <div class="prod-img pi1">
+        <svg viewBox="0 0 44 44" fill="none">
+          <rect x="6" y="14" width="32" height="20" rx="10" fill="#1565C0" opacity="0.7"/>
+          <rect x="10" y="18" width="24" height="12" rx="6" fill="white" opacity="0.5"/>
+          <circle cx="22" cy="24" r="4" fill="#1565C0" opacity="0.8"/>
+          <rect x="15" y="8" width="14" height="7" rx="2" fill="#1565C0" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">BP Monitor</div>
+        <div class="prod-price">৳2,500</div>
+        <button class="btn-cart">
+          <svg viewBox="0 0 11 11" fill="currentColor" stroke="none"><path d="M1 1h1.5l1.5 5h5l1-4H4"/><circle cx="5.5" cy="9.5" r="1"/><circle cx="9" cy="9.5" r="1"/></svg>
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-img pi2">
+        <svg viewBox="0 0 44 44" fill="none">
+          <rect x="8" y="10" width="28" height="24" rx="4" fill="#388E3C" opacity="0.6"/>
+          <rect x="12" y="14" width="20" height="10" rx="2" fill="white" opacity="0.7"/>
+          <circle cx="22" cy="30" r="3" fill="#388E3C" opacity="0.8"/>
+          <path d="M16 6h12" stroke="#388E3C" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Glucometer Kit</div>
+        <div class="prod-price">৳1,800</div>
+        <button class="btn-cart">
+          <svg viewBox="0 0 11 11" fill="currentColor" stroke="none"><path d="M1 1h1.5l1.5 5h5l1-4H4"/><circle cx="5.5" cy="9.5" r="1"/><circle cx="9" cy="9.5" r="1"/></svg>
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-img pi3">
+        <svg viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="28" r="8" fill="#E65100" opacity="0.5"/>
+          <rect x="10" y="22" width="24" height="4" rx="2" fill="#E65100" opacity="0.6"/>
+          <rect x="18" y="10" width="8" height="14" rx="2" fill="#E65100" opacity="0.5"/>
+          <path d="M10 38h24" stroke="#E65100" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Wheelchair</div>
+        <div class="prod-price">৳12,000</div>
+        <button class="btn-cart">
+          <svg viewBox="0 0 11 11" fill="currentColor" stroke="none"><path d="M1 1h1.5l1.5 5h5l1-4H4"/><circle cx="5.5" cy="9.5" r="1"/><circle cx="9" cy="9.5" r="1"/></svg>
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-img pi4">
+        <svg viewBox="0 0 44 44" fill="none">
+          <path d="M22 8 L30 20 L26 20 L26 36 L18 36 L18 20 L14 20 Z" fill="#6A1B9A" opacity="0.6"/>
+          <circle cx="22" cy="36" r="3" fill="#6A1B9A" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Pulse Oximeter</div>
+        <div class="prod-price">৳900</div>
+        <button class="btn-cart">
+          <svg viewBox="0 0 11 11" fill="currentColor" stroke="none"><path d="M1 1h1.5l1.5 5h5l1-4H4"/><circle cx="5.5" cy="9.5" r="1"/><circle cx="9" cy="9.5" r="1"/></svg>
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CHAT CONSULTANT BANNER -->
+<div style="margin:4px 16px 20px;background:linear-gradient(90deg,#E8F5E9,#E3F0FF);border-radius:var(--radius-lg);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border:0.5px solid var(--gray2)">
+  <div>
+    <div style="font-family:var(--ff);font-size:13px;font-weight:700;color:var(--gray9);margin-bottom:3px">Not sure where to start?</div>
+    <div style="font-size:11px;color:var(--gray5);font-family:var(--ff2)">Chat with a medical consultant</div>
+  </div>
+  <button style="background:var(--blue);color:white;font-size:11px;font-weight:700;font-family:var(--ff);padding:8px 14px;border-radius:20px;border:none;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:5px">
+    <svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.7" style="width:13px;height:13px"><path d="M2 3h12a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H5l-3 2V4a1 1 0 0 1 1-1z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Chat Now
+  </button>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="bn-item active">
+    <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L2 9h2v9h4v-5h4v5h4V9h2L10 2z"/></svg>
+    <span class="bn-label">Home</span>
+  </div>
+  <div class="bn-item">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M15 15l-2.5-2.5" stroke-linecap="round"/></svg>
+    <span class="bn-label">Search</span>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;flex:1">
+    <div class="bn-center">
+      <svg viewBox="0 0 22 22" fill="none" stroke="white" stroke-width="1.8"><rect x="3" y="5" width="16" height="14" rx="2"/><path d="M3 9h16M8 5V3M14 5V3" stroke-linecap="round"/></svg>
+    </div>
+    <span class="bn-label" style="margin-top:3px">Book</span>
+  </div>
+  <div class="bn-item">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 18V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12l-3-2-3 2-3-2-3 2z" stroke-linejoin="round"/></svg>
+    <span class="bn-label">Records</span>
+  </div>
+  <div class="bn-item">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10" cy="7" r="3"/><path d="M4 17a6 6 0 0 1 12 0" stroke-linecap="round"/></svg>
+    <span class="bn-label">Profile</span>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+let slide=0;const total=3;
+const track=document.getElementById('heroTrack');
+const dots=document.querySelectorAll('.hero-dot');
+function goSlide(n){
+  slide=n;
+  const w=375-32;
+  track.style.transform=`translateX(${-n*(w+10)}px)`;
+  dots.forEach((d,i)=>d.classList.toggle('active',i===n));
+}
+let timer=setInterval(()=>goSlide((slide+1)%total),3200);
+document.querySelector('.hero').addEventListener('click',()=>{clearInterval(timer)});
+</script>

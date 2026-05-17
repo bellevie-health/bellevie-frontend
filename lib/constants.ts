@@ -1,0 +1,2 @@
+export const API_BASE_URL = 'http://66.29.151.40:6060/api/v1';
+export const BASE_URL = 'http://66.29.151.40:6060';
